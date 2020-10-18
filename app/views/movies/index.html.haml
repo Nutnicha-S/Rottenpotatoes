@@ -13,13 +13,13 @@
     -#สร้างตาราง movie และแสดงข้อมูลทั้งหมด โดยนำข้อมูลมาจาก @movies ใน controller
     - @movies.each_with_index do |movie,index|
       %tr
-      %td= index+1
-      %td= movie.title
-      %td= movie.rating
-      %td= movie.release_date
+        %td= index+1
+        %td= movie.title
+        %td= movie.rating
+        %td= movie.release_date
 
-      -#ใช้ link_to สร้าง link เพื่อดูรายละเอียดของ movie เรื่องนี้
-      %td= link_to "More about #{movie.title}", movie_path(movie)
+        -#ใช้ link_to สร้าง link เพื่อดูรายละเอียดของ movie เรื่องนี้
+        %td= link_to "More about #{movie.title}", movie_path(movie)
       
 = link_to 'Add new movie', new_movie_path
 
