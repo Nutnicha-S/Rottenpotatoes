@@ -11,10 +11,9 @@ class SessionsController < ApplicationController
     end
     
     def destroy
-      session[:user_id]=nil
-      session[:omniauth]=nil
-      #flash[:notice] = 'Logged out successfully.'
-      redirect_to movies_path,notice:"logout"
+      session.delete(:user_id)
+      flash[:notice] = 'Logged out successfully.'
+      redirect_to movies_path
     end
 
     def failure   
