@@ -12,14 +12,18 @@
   %tbody
     -#สร้างตาราง movie และแสดงข้อมูลทั้งหมด โดยนำข้อมูลมาจาก @movies ใน controller
     - @movies.each_with_index do |movie,index|
-      %tr
+      %tr{:class => ('adult' unless movie.rating =~ /^G|PG$/)}
         %td= index+1
         %td= movie.title
         %td= movie.rating
         %td= movie.release_date
-
-        -#ใช้ link_to สร้าง link เพื่อดูรายละเอียดของ movie เรื่องนี้
         %td= link_to "More about #{movie.title}", movie_path(movie)
       
 = link_to 'Add new movie', new_movie_path
 
+%h1 Search TMDb for a movie
+
+= form_tag :action => 'search_tmdb' do
+  <label for='search_terms'>Search Terms</label>
+  <input id="search_terms" name="search_terms" type="text" />
+  = submit_tag 'Search TMDb'

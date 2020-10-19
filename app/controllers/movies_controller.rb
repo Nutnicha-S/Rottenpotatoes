@@ -7,8 +7,8 @@ class MoviesController < ApplicationController
 
   def show
     id = params[:id]
-    @movie = Movie.find(id) 
-
+    @movie = Movie.find(id)
+    render(:partial => 'movie', :object => @movie) if request.xhr?
   end
 
   def new
@@ -45,4 +45,33 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  def search_tmdb
+    @search_params = params[:search_terms]
+    @search_params = " " if @search_params  == ""
+    @search = Tmdb::Movie.find(@search_params)
+    @search.each do |movie|
+      if Movie.exists?(:title => movie.title, :description => movie.overview) == false
+        create_tmdb(movie)
+      end
+    end
+
+    if @search != []
+      render "show_tmdb"
+    else
+      flash[:warning] = "'#{params[:search_terms]}' was not found in TMDb."
+      redirect_to movies_path
+    end
+
+  end
+
+  def create_tmdb(movie)
+    permitted = {:title => movie.title,:rating =>"G" ,:release_date =>movie.release_date,:description => movie.overview}
+    @movie = Movie.create!(permitted)
+  end
+
+  def show_tmdb
+    id = params[:id] # retrieve movie ID from URI route
+    @movie = Movie.find(id) # look up movie by unique ID
+    render(:partial => 'movie', :object => @movie) if request.xhr?
+  end
 end

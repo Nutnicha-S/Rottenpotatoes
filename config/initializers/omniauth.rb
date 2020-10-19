@@ -1,6 +1,6 @@
 # Replace API_KEY and API_SECRET with the values you got from Twitter
 Rails.application.config.middleware.use OmniAuth::Builder do
-    provider :twitter, "O17BkR1X6knWFntCLPGJ7JlR0", "LdtMZetLFlxJ4NMUiOCPsfP0O5XhmUyxhEVDFAWb5nQfIg0I5t"
+    provider :twitter, "n8bmaW94WkDvju88rLzFsBQeF", "JPDKoKp1lmJ8j6HIX5zQ8HH7BrQohhH8FVbnI22EQz5LB9Bffa"
     end
     
     def OmniAuth.login_path(provider)
