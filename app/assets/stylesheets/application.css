@@ -17,9 +17,14 @@ a {
   font-weight: bold;
 }
 banner {
-  color: maroon;
-  font-weight: bold;
-  font-size: 40px;
+    padding: 30px;
+    color: maroon;
+    font-weight: bold;
+    font-size: 40px;
+    display: block;
+    width: 100%;
+    background: linear-gradient(90deg, #FFCC99 10%, #FFEDDA 50% ,#FFCC99 90% );
+    text-align: center;
 }
 h1 {
   color: maroon;
@@ -70,4 +75,8 @@ form label {
   position: absolute;
   border: 2px double grey;
   background: wheat;
+}
+
+img{
+  height: 200px;
 }

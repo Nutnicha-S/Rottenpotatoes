@@ -1,13 +1,13 @@
 class MoviesController < ApplicationController
   skip_before_action :authenticate!, only: [ :show, :index ]
-
   def index
     @movies = Movie.all.order('title')
   end
 
   def show
-    id = params[:id]
-    @movie = Movie.find(id)
+    id = params[:id] # retrieve movie ID from URI route
+    @movie = Movie.find(id) # look up movie by unique ID
+    # will render app/views/movies/show.html.haml by default
     render(:partial => 'movie', :object => @movie) if request.xhr?
   end
 
@@ -17,9 +17,8 @@ class MoviesController < ApplicationController
 
   def create
     params.require(:movie)
-    permitted = params[:movie].permit(:title,:rating,:release_date,:description)
+    permitted = params[:movie].permit(:title, :rating, :release_date, :description)
     @movie = Movie.create!(permitted)
-
     flash[:notice] = "#{@movie.title} was successfully created."
     redirect_to movie_path(@movie)
   end
@@ -40,7 +39,6 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @movie.destroy
-
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
   end
@@ -54,7 +52,7 @@ class MoviesController < ApplicationController
         create_tmdb(movie)
       end
     end
-
+    
     if @search != []
       render "show_tmdb"
     else
@@ -74,4 +72,5 @@ class MoviesController < ApplicationController
     @movie = Movie.find(id) # look up movie by unique ID
     render(:partial => 'movie', :object => @movie) if request.xhr?
   end
+  
 end

@@ -1,3 +1,10 @@
+%h1 Search TMDb for a movie
+
+= form_tag :action => 'search_tmdb' do
+  <label for='search_terms'>Search Terms</label>
+  <input id="search_terms" name="search_terms" type="text" />
+  = submit_tag 'Search TMDb'
+  
 %h1 All Movies
 
 <label for="G_filter">G</label>
@@ -31,10 +38,3 @@
         %td= link_to "More about #{movie.title}", movie_path(movie)
       
 = link_to 'Add new movie', new_movie_path
-
-%h1 Search TMDb for a movie
-
-= form_tag :action => 'search_tmdb' do
-  <label for='search_terms'>Search Terms</label>
-  <input id="search_terms" name="search_terms" type="text" />
-  = submit_tag 'Search TMDb'
