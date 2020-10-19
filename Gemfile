@@ -11,6 +11,21 @@ group :development do
   gem 'sqlite3', '~> 1.4'
 end
 
+group :test do
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions  
+  gem 'database_cleaner' # to clear Cucumber's test database between runs
+  gem 'capybara'         # lets Cucumber pretend to be a web browser
+  gem 'launchy'          # a useful debugging aid for user stories
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'metric_fu'
+  gem 'rails-controller-testing'
+  gem 'simplecov', :require => false
+  gem 'factory_girl_rails' # if using FactoryGirl
+  gem 'factory_girl'
+end
+
 group :production do
   gem 'pg'
 end
@@ -48,6 +63,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -57,6 +73,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'factory_girl_rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

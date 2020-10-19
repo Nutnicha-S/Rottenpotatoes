@@ -24,7 +24,9 @@
   %td= review.id
 
   - if @current_user.name == review.moviegoer.name
+    %br
     %td= link_to 'Edit Review', edit_movie_review_path(@movie.id,review.id)
+    %br
     %td= link_to 'Delete', movie_review_path(@movie,review), :method => :delete
   %br
 
